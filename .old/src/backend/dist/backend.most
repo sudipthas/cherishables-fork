@@ -1,0 +1,455 @@
+// Version: 3.0.0
+type AccessControlState__45017055 =
+  {
+    var adminAssigned : Bool;
+    userRoles : Map__246123559<Principal, UserRole__1073662873>
+  };
+type AddonProduct__705390098 =
+  {
+    category : Text;
+    codEnabled : Bool;
+    description : ?Text;
+    displayOrder : Nat;
+    id : Text;
+    imageUrl : Text;
+    name : Text;
+    price : Nat
+  };
+type AdminEmailConfig__107088414 =
+  {adminEmail : Text; fromName : Text; isEnabled : Bool; replyTo : Text};
+type ArtStyle__999040260 =
+  {
+    #Chibi;
+    #CoupleIllustration;
+    #CuteCartoon;
+    #FunnyExaggerated;
+    #ProfessionalPortrait;
+    #SoftAesthetic
+  };
+type CartItem__1044444615 =
+  {
+    flowType : Text;
+    image : Text;
+    itemImages : [Text];
+    name : Text;
+    price : Nat;
+    productId : Text;
+    quantity : Nat
+  };
+type CartLead__829037922 =
+  {
+    assignedRep : ?Text;
+    createdAt : Int;
+    email : Text;
+    id : Nat;
+    leadType : LeadType__476397879;
+    name : Text;
+    phone : Text;
+    productIds : [Text];
+    productInterest : ?Text;
+    productName : Text;
+    recipient : ?Text;
+    status : Text
+  };
+type Cart__949090555 =
+  {
+    createdAt : Text;
+    customerId : ?Text;
+    id : Text;
+    items : [CartItem__1044444615];
+    sessionId : Text;
+    updatedAt : Text
+  };
+type CommunicationLog__268250721 =
+  {
+    adminSeenAt : ?Int;
+    body : Text;
+    errorMessage : ?Text;
+    id : Text;
+    messages : [CommunicationMessage__903524882];
+    orderId : Text;
+    recipientEmail : Text;
+    sentAt : ?Int;
+    status : EmailStatus__498268987;
+    subject : Text;
+    templateId : EmailTemplateId__307174593;
+    templateName : Text
+  };
+type CommunicationMessage__903524882 =
+  {
+    author : ?Text;
+    body : Text;
+    direction : MessageDirection__917541268;
+    isRead : Bool;
+    timestamp : Int
+  };
+type CustomerId__474717636 = Nat;
+type Customer__479282119 =
+  {
+    createdAt : Int;
+    email : Text;
+    id : CustomerId__474717636;
+    name : Text;
+    phone : Text;
+    updatedAt : Int
+  };
+type Data__552063367<K, V> = {var count : Nat__93962160; kvs : [var ?(K, V)]};
+type DeliveryAddress__860299868 =
+  {
+    addressLine1 : Text;
+    addressLine2 : Text;
+    city : Text;
+    country : Text;
+    fullName : Text;
+    pincode : Text;
+    state : Text
+  };
+type EmailStatus__498268987 = {#Failed; #Pending; #Sent};
+type EmailTemplateId__307174593 = Text;
+type EmailTemplate__842253304 =
+  {
+    body : Text;
+    category : Text;
+    id : EmailTemplateId__307174593;
+    isActive : Bool;
+    name : Text;
+    subject : Text;
+    variables : [Text]
+  };
+type ExternalBlob__671167343 = Blob;
+type GalleryImage__1056092601 =
+  {
+    displayOrder : Nat;
+    id : Text;
+    imageUrl : Text;
+    isActive : Bool;
+    title : Text;
+    uploadedAt : Int
+  };
+type HeroPlatform__70098643 = {#Both; #Mobile; #Website};
+type HeroVideo__534833245 =
+  {
+    displayOrder : Nat;
+    id : Text;
+    isActive : Bool;
+    isDefault : Bool;
+    platform : ?HeroPlatform__70098643;
+    title : Text;
+    uploadedAt : Int;
+    videoUrl : Text
+  };
+type Internal__455405067<K, V> =
+  {children : [var ?Node__279997185<K, V>]; data : Data__552063367<K, V>};
+type LeadType__476397879 = {#Browse; #CartAbandon; #Checkout};
+type Lead__109578881 =
+  {
+    createdAt : Int;
+    email : Text;
+    id : Text;
+    message : Text;
+    name : Text;
+    phone : Text;
+    status : Text;
+    subject : Text
+  };
+type Leaf__114713147<K, V> = {data : Data__552063367<K, V>};
+type Map__190625089<K, V> = Map__719753394<K, V>;
+type Map__246123559<K, V> = Map__190625089<K, V>;
+type Map__719753394<K, V> =
+  {var root : Node__279997185<K, V>; var size : Nat__93962160};
+type MessageDirection__917541268 = {#Received; #Sent};
+type MobileWebAppSettings__450670521 =
+  {
+    appName : Text;
+    heroVideoIds : [Text];
+    primaryColor : Text;
+    secondaryColor : Text;
+    splashScreenUrl : Text
+  };
+type Nat__920180692 = Nat;
+type Nat__93962160 = Nat__920180692;
+type Node__279997185<K, V> =
+  {#internal : Internal__455405067<K, V>; #leaf : Leaf__114713147<K, V>};
+type OldCartLead__25062061 =
+  {
+    createdAt : Int;
+    email : Text;
+    id : Nat;
+    leadType : OldLeadType__386579909;
+    name : Text;
+    phone : Text;
+    productIds : [Text];
+    productInterest : ?Text;
+    productName : Text;
+    recipient : ?Text;
+    status : Text
+  };
+type OldLeadType__386579909 = {#Browse; #CartAbandon; #Checkout};
+type OldSalesRep__551757986 =
+  {addedAt : Int; email : ?Text; principal : Text};
+type OrderId__197865225 = Text;
+type OrderItem__892573009 =
+  {
+    flowType : Text;
+    itemImages : [Text];
+    name : Text;
+    price : Nat;
+    productId : Text;
+    quantity : Nat
+  };
+type OrderStatus__393009242 =
+  {#Completed; #Delivered; #InProgress; #OutForDelivery; #Received; #Shipped};
+type Order__890782335 =
+  {
+    addOnsAmount : Nat;
+    address : Text;
+    advancePaid : Nat;
+    amount : Nat;
+    artStyle : ArtStyle__999040260;
+    cartoonStyle : Text;
+    createdAt : Timestamp__301639476;
+    customerAcknowledged : Bool;
+    customerEmail : Text;
+    customerId : ?Text;
+    customerName : Text;
+    customerPhone : Text;
+    deliveryAddress : ?DeliveryAddress__860299868;
+    estimatedDelivery : Timestamp__301639476;
+    estimatedDeliveryText : Text;
+    finalArtworkKey : ?ExternalBlob__671167343;
+    is3DModel : Bool;
+    isRead : Bool;
+    notes : Text;
+    orderId : OrderId__197865225;
+    orderItems : [OrderItem__892573009];
+    orderStatus : OrderStatus__393009242;
+    paymentMethod : ?PaymentMethod__46913440;
+    paymentMode : PaymentMode__779188169;
+    paymentRef : ?Text;
+    paymentStatus : PaymentStatus__1050999476;
+    photoKeys : [ExternalBlob__671167343];
+    pincode : Text;
+    portraitPrice : Nat;
+    portraitType : PortraitType__244721049;
+    portraitTypeText : ?Text;
+    razorpayOrderId : ?Text;
+    razorpayPaymentId : ?Text;
+    referredBy : ?Text;
+    selectedAddOns : ?Text;
+    specialInstructions : ?Text;
+    totalAmount : Nat;
+    upiRef : ?Text
+  };
+type OtpEntry__142699243 = {attempts : Nat; code : Text; expiresAt : Int};
+type PaymentMethod__46913440 = {#COD; #Razorpay};
+type PaymentMode__779188169 = {#Advance; #Full};
+type PaymentStatus__1050999476 = {#AdvancePaid; #Failed; #Paid; #Pending};
+type PortraitType__244721049 = {#Couple; #Family; #Group; #Single};
+type ReviewStatus__386089990 = {#Approved; #Pending; #Rejected};
+type Review__1033506721 =
+  {
+    createdAt : Int;
+    id : Text;
+    imageUrl : ?Text;
+    name : Text;
+    rating : Nat;
+    status : ReviewStatus__386089990;
+    text : Text;
+    updatedAt : Int
+  };
+type SalesRep__623204215 =
+  {
+    addedAt : Int;
+    email : ?Text;
+    name : ?Text;
+    phone : ?Text;
+    principal : Text
+  };
+type SessionToken__828041108 =
+  {
+    createdAt : Int;
+    customerId : CustomerId__474717636;
+    expiresAt : Int;
+    token : Text
+  };
+type TeamMember__722796770 =
+  {
+    displayOrder : Nat;
+    id : Text;
+    imageUrl : Text;
+    isActive : Bool;
+    name : Text;
+    role : Text;
+    uploadedAt : Int
+  };
+type Timestamp__301639476 = Int;
+type UserRole__1073662873 = {#admin; #guest; #user};
+type WebsiteSettings__906417583 =
+  {
+    contactEmail : Text;
+    contactPhone : Text;
+    heroVideoIds : [Text];
+    instagramUrl : Text;
+    logoUrl : Text;
+    primaryColor : Text;
+    secondaryColor : Text;
+    siteName : Text;
+    whatsappNumber : Text
+  };
+actor ({
+  in accessControlState : AccessControlState__45017055;
+  in adminEmailConfig : {var config : AdminEmailConfig__107088414};
+  in cartCustomerIndex : Map__246123559<Text, Text>;
+  in var cartLeads : Map__246123559<Nat, OldCartLead__25062061>;
+  in cartLeadsState : {var nextCartLeadId : Nat};
+  in cartSessionIndex : Map__246123559<Text, Text>;
+  in cartState : {var nextCartId : Nat};
+  in carts : Map__246123559<Text, Cart__949090555>;
+  in communicationLogs : Map__246123559<Text, CommunicationLog__268250721>;
+  in customerAuthState : {var nextCustomerId : Nat};
+  in customers : Map__246123559<CustomerId__474717636, Customer__479282119>;
+  in emailState : {var nextLogId : Nat; var templatesSeeded : Bool};
+  in emailTemplates :
+    Map__246123559<EmailTemplateId__307174593, EmailTemplate__842253304>;
+  in galleryImages : Map__246123559<Text, GalleryImage__1056092601>;
+  in galleryState : {var nextGalleryImageId : Nat};
+  in heroVideoSettings :
+    {
+      var autoplay : Bool;
+      var keepVolumeOn : Bool;
+      var loopEnabled : Bool;
+      var muted : Bool
+    };
+  in heroVideos : Map__246123559<Text, HeroVideo__534833245>;
+  in heroVideosState : {var nextHeroVideoId : Nat};
+  in leads : Map__246123559<Text, Lead__109578881>;
+  in leadsState : {var nextLeadId : Nat};
+  in mobileWebAppSettings : {var settings : MobileWebAppSettings__450670521};
+  in var nextCartLeadId : Nat;
+  in orders : Map__246123559<OrderId__197865225, Order__890782335>;
+  in otps : Map__246123559<Text, OtpEntry__142699243>;
+  in products : Map__246123559<Text, AddonProduct__705390098>;
+  in productsState :
+    {var maxDisplayOrder : Nat; var nextProductId : Nat; var seeded : Bool};
+  in razorpayState : {var razorpayKeyId : Text; var razorpayKeySecret : Text};
+  in reviewsMap : Map__246123559<Text, Review__1033506721>;
+  in reviewsState : {var nextReviewId : Nat};
+  in salesReps : Map__246123559<Text, OldSalesRep__551757986>;
+  in sessions : Map__246123559<Text, SessionToken__828041108>;
+  in state : {var adminEmail : Text; var nextOrderId : Nat};
+  in teamMembers : Map__246123559<Text, TeamMember__722796770>;
+  in teamMembersState : {var nextTeamMemberId : Nat};
+  in websiteSettings : {var settings : WebsiteSettings__906417583}
+}, {
+  stable accessControlState :
+    {
+      var adminAssigned : Bool;
+      userRoles : Map__246123559<Principal, UserRole__1073662873>
+    };
+  stable adminEmailConfig : {var config : AdminEmailConfig__107088414};
+  stable cartCustomerIndex :
+    {var root : Node__279997185<Text, Text>; var size : Nat__93962160};
+  stable var cartLeads :
+    {
+      var root : Node__279997185<Nat, CartLead__829037922>;
+      var size : Nat__93962160
+    };
+  stable cartLeadsState : {var nextCartLeadId : Nat};
+  stable cartSessionIndex :
+    {var root : Node__279997185<Text, Text>; var size : Nat__93962160};
+  stable cartState : {var nextCartId : Nat};
+  stable carts :
+    {
+      var root : Node__279997185<Text, Cart__949090555>;
+      var size : Nat__93962160
+    };
+  stable communicationLogs :
+    {
+      var root : Node__279997185<Text, CommunicationLog__268250721>;
+      var size : Nat__93962160
+    };
+  stable customerAuthState : {var nextCustomerId : Nat};
+  stable customers :
+    {
+      var root : Node__279997185<CustomerId__474717636, Customer__479282119>;
+      var size : Nat__93962160
+    };
+  stable emailState : {var nextLogId : Nat; var templatesSeeded : Bool};
+  stable emailTemplates :
+    {
+      var root :
+        Node__279997185<EmailTemplateId__307174593, EmailTemplate__842253304>;
+      var size : Nat__93962160
+    };
+  stable galleryImages :
+    {
+      var root : Node__279997185<Text, GalleryImage__1056092601>;
+      var size : Nat__93962160
+    };
+  stable galleryState : {var nextGalleryImageId : Nat};
+  stable heroVideoSettings :
+    {
+      var autoplay : Bool;
+      var keepVolumeOn : Bool;
+      var loopEnabled : Bool;
+      var muted : Bool
+    };
+  stable heroVideos :
+    {
+      var root : Node__279997185<Text, HeroVideo__534833245>;
+      var size : Nat__93962160
+    };
+  stable heroVideosState : {var nextHeroVideoId : Nat};
+  stable leads :
+    {
+      var root : Node__279997185<Text, Lead__109578881>;
+      var size : Nat__93962160
+    };
+  stable leadsState : {var nextLeadId : Nat};
+  stable mobileWebAppSettings :
+    {var settings : MobileWebAppSettings__450670521};
+  stable var nextCartLeadId : Nat;
+  stable orders :
+    {
+      var root : Node__279997185<OrderId__197865225, Order__890782335>;
+      var size : Nat__93962160
+    };
+  stable otps :
+    {
+      var root : Node__279997185<Text, OtpEntry__142699243>;
+      var size : Nat__93962160
+    };
+  stable products :
+    {
+      var root : Node__279997185<Text, AddonProduct__705390098>;
+      var size : Nat__93962160
+    };
+  stable productsState :
+    {var maxDisplayOrder : Nat; var nextProductId : Nat; var seeded : Bool};
+  stable razorpayState :
+    {var razorpayKeyId : Text; var razorpayKeySecret : Text};
+  stable reviewsMap :
+    {
+      var root : Node__279997185<Text, Review__1033506721>;
+      var size : Nat__93962160
+    };
+  stable reviewsState : {var nextReviewId : Nat};
+  stable salesReps :
+    {
+      var root : Node__279997185<Text, SalesRep__623204215>;
+      var size : Nat__93962160
+    };
+  stable sessions :
+    {
+      var root : Node__279997185<Text, SessionToken__828041108>;
+      var size : Nat__93962160
+    };
+  stable state : {var adminEmail : Text; var nextOrderId : Nat};
+  stable teamMembers :
+    {
+      var root : Node__279997185<Text, TeamMember__722796770>;
+      var size : Nat__93962160
+    };
+  stable teamMembersState : {var nextTeamMemberId : Nat};
+  stable websiteSettings : {var settings : WebsiteSettings__906417583}
+});

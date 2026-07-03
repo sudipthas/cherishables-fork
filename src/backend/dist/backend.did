@@ -1,0 +1,719 @@
+type _ImmutableObjectStorageRefillResult = 
+ record {
+   success: opt bool;
+   topped_up_amount: opt nat;
+ };
+type _ImmutableObjectStorageRefillInformation = record {
+                                                  proposed_top_up_amount:
+                                                   opt nat;};
+type _ImmutableObjectStorageCreateCertificateResult = 
+ record {
+   blob_hash: text;
+   method: text;
+ };
+type WebsiteSettings = 
+ record {
+   contactEmail: text;
+   contactPhone: text;
+   heroVideoIds: vec text;
+   instagramUrl: text;
+   logoUrl: text;
+   primaryColor: text;
+   secondaryColor: text;
+   siteName: text;
+   whatsappNumber: text;
+ };
+type VerifyOtpResponse = 
+ record {
+   customer: opt Customer;
+   message: text;
+   success: bool;
+   token: opt text;
+ };
+type VerifyOtpRequest = 
+ record {
+   email: text;
+   name: text;
+   otp: text;
+   phone: text;
+ };
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type UpdateCustomerRequest = 
+ record {
+   name: text;
+   phone: text;
+ };
+type UpdateAdminEmailConfigRequest = 
+ record {
+   adminEmail: text;
+   fromName: text;
+   isEnabled: bool;
+   replyTo: text;
+ };
+type TransformationOutput = 
+ record {
+   body: blob;
+   headers: vec HttpHeader;
+   status: nat;
+ };
+type TransformationInput = 
+ record {
+   context: blob;
+   response: HttpRequestResult;
+ };
+type Timestamp = int;
+type TeamMember = 
+ record {
+   displayOrder: nat;
+   id: text;
+   imageUrl: text;
+   isActive: bool;
+   name: text;
+   role: text;
+   uploadedAt: int;
+ };
+type SendTemplateEmailResponse = 
+ variant {
+   err: text;
+   ok: CommunicationLog;
+ };
+type SendTemplateEmailRequest = 
+ record {
+   customVariables: vec record {
+                          text;
+                          text;
+                        };
+   orderId: text;
+   templateId: EmailTemplateId;
+ };
+type SalesRepList = vec SalesRep;
+type SalesRep = 
+ record {
+   addedAt: int;
+   email: opt text;
+   name: opt text;
+   phone: opt text;
+   "principal": text;
+ };
+type ReviewStatus = 
+ variant {
+   Approved;
+   Pending;
+   Rejected;
+ };
+type Review = 
+ record {
+   createdAt: int;
+   id: text;
+   imageUrl: opt text;
+   name: text;
+   rating: nat;
+   status: ReviewStatus;
+   "text": text;
+   updatedAt: int;
+ };
+type RequestOtpResponse = 
+ record {
+   message: text;
+   success: bool;
+ };
+type RequestOtpRequest = record {phone: text;};
+type RazorpayOrderDetails = 
+ record {
+   amount: nat;
+   currency: text;
+   keyId: text;
+   orderId: text;
+ };
+type PortraitType = 
+ variant {
+   Couple;
+   Family;
+   Group;
+   Single;
+ };
+type PaymentStatus = 
+ variant {
+   AdvancePaid;
+   Failed;
+   Paid;
+   Pending;
+ };
+type PaymentMode = 
+ variant {
+   Advance;
+   Full;
+ };
+type PaymentMethod = 
+ variant {
+   COD;
+   Razorpay;
+ };
+type OrderStatus = 
+ variant {
+   Completed;
+   Delivered;
+   InProgress;
+   OutForDelivery;
+   Received;
+   Shipped;
+ };
+type OrderItem = 
+ record {
+   flowType: text;
+   itemImages: vec text;
+   name: text;
+   price: nat;
+   productId: text;
+   quantity: nat;
+ };
+type OrderId = text;
+type Order = 
+ record {
+   addOnsAmount: nat;
+   address: text;
+   advancePaid: nat;
+   amount: nat;
+   artStyle: ArtStyle;
+   cartoonStyle: text;
+   createdAt: Timestamp;
+   customerAcknowledged: bool;
+   customerEmail: text;
+   customerId: opt text;
+   customerName: text;
+   customerPhone: text;
+   deliveryAddress: opt DeliveryAddress;
+   estimatedDelivery: Timestamp;
+   estimatedDeliveryText: text;
+   finalArtworkKey: opt ExternalBlob;
+   is3DModel: bool;
+   isRead: bool;
+   notes: text;
+   orderId: OrderId;
+   orderItems: vec OrderItem;
+   orderStatus: OrderStatus;
+   paymentMethod: opt PaymentMethod;
+   paymentMode: PaymentMode;
+   paymentRef: opt text;
+   paymentStatus: PaymentStatus;
+   photoKeys: vec ExternalBlob;
+   pincode: text;
+   portraitPrice: nat;
+   portraitType: PortraitType;
+   portraitTypeText: opt text;
+   razorpayOrderId: opt text;
+   razorpayPaymentId: opt text;
+   referredBy: opt text;
+   selectedAddOns: opt text;
+   specialInstructions: opt text;
+   totalAmount: nat;
+   upiRef: opt text;
+ };
+type NotificationType = 
+ variant {
+   Message;
+   Order;
+ };
+type Notification = 
+ record {
+   id: text;
+   isRead: bool;
+   link: opt text;
+   logId: opt text;
+   message: text;
+   notificationType: NotificationType;
+   orderId: opt text;
+   timestamp: int;
+   title: text;
+ };
+type MobileWebAppSettings = 
+ record {
+   appName: text;
+   heroVideoIds: vec text;
+   primaryColor: text;
+   secondaryColor: text;
+   splashScreenUrl: text;
+ };
+type MessageDirection = 
+ variant {
+   Received;
+   Sent;
+ };
+type LeadType = 
+ variant {
+   Browse;
+   CartAbandon;
+   Checkout;
+ };
+type Lead = 
+ record {
+   createdAt: int;
+   email: text;
+   id: text;
+   message: text;
+   name: text;
+   phone: text;
+   status: text;
+   subject: text;
+ };
+type HttpRequestResult = 
+ record {
+   body: blob;
+   headers: vec HttpHeader;
+   status: nat;
+ };
+type HttpHeader = 
+ record {
+   name: text;
+   value: text;
+ };
+type HeroVideoSettings = 
+ record {
+   autoplay: bool;
+   keepVolumeOn: bool;
+   loopEnabled: bool;
+   muted: bool;
+ };
+type HeroVideo = 
+ record {
+   displayOrder: nat;
+   id: text;
+   isActive: bool;
+   isDefault: bool;
+   platform: opt HeroPlatform;
+   title: text;
+   uploadedAt: int;
+   videoUrl: text;
+ };
+type HeroPlatform = 
+ variant {
+   Both;
+   Mobile;
+   Website;
+ };
+type GalleryImage = 
+ record {
+   displayOrder: nat;
+   id: text;
+   imageUrl: text;
+   isActive: bool;
+   title: text;
+   uploadedAt: int;
+ };
+type ExternalBlob = blob;
+type EmailTemplateId = text;
+type EmailTemplate = 
+ record {
+   body: text;
+   category: text;
+   id: EmailTemplateId;
+   isActive: bool;
+   name: text;
+   subject: text;
+   variables: vec text;
+ };
+type EmailStatus = 
+ variant {
+   Failed;
+   Pending;
+   Sent;
+ };
+type DeliveryAddress = 
+ record {
+   addressLine1: text;
+   addressLine2: text;
+   city: text;
+   country: text;
+   fullName: text;
+   pincode: text;
+   state: text;
+ };
+type CustomerWithOrders = 
+ record {
+   customer: Customer;
+   orderCount: nat;
+ };
+type CustomerId = nat;
+type Customer = 
+ record {
+   createdAt: int;
+   email: text;
+   id: CustomerId;
+   name: text;
+   phone: text;
+   updatedAt: int;
+ };
+type CreateOrderResponse = 
+ record {
+   amount: nat;
+   currency: text;
+   orderId: OrderId;
+   razorpayOrder: opt RazorpayOrderDetails;
+ };
+type CreateOrderRequest = 
+ record {
+   addOnsAmount: nat;
+   address: text;
+   cartoonStyle: text;
+   customerAcknowledged: bool;
+   customerEmail: text;
+   customerId: text;
+   customerName: text;
+   customerPhone: text;
+   deliveryAddress: DeliveryAddress;
+   is3DModel: bool;
+   notes: text;
+   orderItems: vec OrderItem;
+   paymentMethod: PaymentMethod;
+   paymentMode: PaymentMode;
+   photoKeys: vec ExternalBlob;
+   pincode: text;
+   portraitPrice: nat;
+   portraitType: text;
+   referredBy: text;
+   selectedAddOns: text;
+   specialInstructions: opt text;
+ };
+type ConfirmPaymentResponse = record {orderId: OrderId;};
+type CommunicationMessage = 
+ record {
+   author: opt text;
+   body: text;
+   direction: MessageDirection;
+   isRead: bool;
+   timestamp: int;
+ };
+type CommunicationLog = 
+ record {
+   adminSeenAt: opt int;
+   body: text;
+   errorMessage: opt text;
+   id: text;
+   messages: vec CommunicationMessage;
+   orderId: text;
+   recipientEmail: text;
+   sentAt: opt int;
+   status: EmailStatus;
+   subject: text;
+   templateId: EmailTemplateId;
+   templateName: text;
+ };
+type CheckoutLeadInput = 
+ record {
+   name: text;
+   phone: text;
+   productIds: vec text;
+ };
+type CartResponse = 
+ record {
+   cart: opt Cart;
+   message: text;
+   success: bool;
+ };
+type CartLeadInput = 
+ record {
+   email: text;
+   leadType: LeadType;
+   name: text;
+   phone: text;
+   productIds: vec text;
+   productName: text;
+ };
+type CartLead = 
+ record {
+   assignedRep: opt text;
+   createdAt: int;
+   email: text;
+   id: nat;
+   leadType: LeadType;
+   name: text;
+   phone: text;
+   productIds: vec text;
+   productInterest: opt text;
+   productName: text;
+   recipient: opt text;
+   status: text;
+ };
+type CartItem = 
+ record {
+   flowType: text;
+   image: text;
+   itemImages: vec text;
+   name: text;
+   price: nat;
+   productId: text;
+   quantity: nat;
+ };
+type Cart = 
+ record {
+   createdAt: text;
+   customerId: opt text;
+   id: text;
+   items: vec CartItem;
+   sessionId: text;
+   updatedAt: text;
+ };
+type BrowseLeadInput = 
+ record {
+   name: text;
+   phone: text;
+   productInterest: opt text;
+   recipient: opt text;
+ };
+type AuthResult = 
+ record {
+   message: text;
+   success: bool;
+ };
+type ArtStyle = 
+ variant {
+   Chibi;
+   CoupleIllustration;
+   CuteCartoon;
+   FunnyExaggerated;
+   ProfessionalPortrait;
+   SoftAesthetic;
+ };
+type AdminEmailConfig = 
+ record {
+   adminEmail: text;
+   fromName: text;
+   isEnabled: bool;
+   replyTo: text;
+ };
+type AddonProduct = 
+ record {
+   category: text;
+   codEnabled: bool;
+   description: opt text;
+   displayOrder: nat;
+   id: text;
+   imageUrl: text;
+   name: text;
+   price: nat;
+ };
+service : {
+  _immutableObjectStorageBlobsAreLive: (hashes: vec blob) -> (vec bool) query;
+  _immutableObjectStorageBlobsToDelete: () -> (vec blob) query;
+  _immutableObjectStorageConfirmBlobDeletion: (blobs: vec blob) -> ();
+  _immutableObjectStorageCreateCertificate: (blobHash: text) ->
+   (_ImmutableObjectStorageCreateCertificateResult);
+  _immutableObjectStorageRefillCashier: (refillInformation:
+   opt _ImmutableObjectStorageRefillInformation) ->
+   (_ImmutableObjectStorageRefillResult);
+  _immutableObjectStorageUpdateGatewayPrincipals: () -> ();
+  _initializeAccessControl: () -> ();
+  addCustomerReply: (orderId: OrderId, templateId: EmailTemplateId, body:
+   text) -> (SendTemplateEmailResponse);
+  addCustomerReplyPublic: (orderId: OrderId, message: text, senderEmail:
+   text) -> (SendTemplateEmailResponse);
+  addGalleryImage: (title: text, imageUrl: text) -> (GalleryImage);
+  addHeroVideo: (title: text, videoUrl: text, platform: HeroPlatform) ->
+   (HeroVideo);
+  addProduct: (name: text, price: nat, category: text, imageUrl: text,
+   codEnabled: bool, description: opt text) -> (text);
+  addReview: (name: text, "text": text, rating: nat, imageUrl: opt text) ->
+   (Review);
+  addSalesRep: ("principal": text, email: opt text, name: opt text, phone:
+   opt text) -> (variant {
+                   err: text;
+                   ok;
+                 });
+  addTeamMember: (name: text, role: text, imageUrl: text) -> (TeamMember);
+  addToCart: (sessionId: text, customerId: opt text, item: CartItem) ->
+   (CartResponse);
+  approveReview: (id: text) -> (opt Review);
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  assignLeadToRep: (cartLeadId: nat, repPrincipal: text) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  clearCart: (sessionId: text, customerId: opt text) -> (CartResponse);
+  confirmRazorpayPayment: (orderId: text, razorpayPaymentId: text,
+   razorpayOrderId: text, razorpaySignature: text) ->
+   (variant {
+      err: text;
+      ok: bool;
+    });
+  confirmUpiPayment: (orderId: text, upiRef: text) ->
+   (variant {
+      err: text;
+      ok: ConfirmPaymentResponse;
+    });
+  createBulkOrder: (req: CreateOrderRequest) -> (CreateOrderResponse);
+  createCart: (sessionId: text) -> (CartResponse);
+  createOrder: (req: CreateOrderRequest) -> (CreateOrderResponse);
+  deleteCartLead: (id: nat) -> (variant {
+                                  err: text;
+                                  ok;
+                                });
+  deleteGalleryImage: (id: text) -> (bool);
+  deleteHeroVideo: (id: text) -> (bool);
+  deleteLead: (id: text) -> (bool);
+  deleteMessage: (logId: text, messageIndex: nat) -> ();
+  deleteOrder: (orderId: OrderId) -> (variant {
+                                        err: text;
+                                        ok;
+                                      });
+  deleteProduct: (id: text) -> (bool);
+  deleteReview: (id: text) -> (bool);
+  deleteTeamMember: (id: text) -> (bool);
+  getActiveGalleryImages: () -> (vec GalleryImage) query;
+  getActiveHeroVideos: () -> (vec HeroVideo) query;
+  getActiveHeroVideosByPlatform: (_platform: HeroPlatform) ->
+   (vec HeroVideo) query;
+  getActiveTeamMembers: () -> (vec TeamMember) query;
+  getAdminEmailConfig: () -> (AdminEmailConfig) query;
+  getAllCustomersWithOrders: () -> (vec CustomerWithOrders) query;
+  getCallerUserRole: () -> (UserRole) query;
+  getCart: (sessionId: text, customerId: opt text) -> (CartResponse);
+  getCartLeads: () -> (vec CartLead) query;
+  getCustomer: (token: text) -> (opt Customer) query;
+  getCustomerCount: () -> (nat) query;
+  getEmailTemplate: (id: EmailTemplateId) -> (opt EmailTemplate) query;
+  getGalleryImages: () -> (vec GalleryImage) query;
+  getHeroVideoSettings: () -> (HeroVideoSettings) query;
+  getHeroVideos: () -> (vec HeroVideo) query;
+  getMobileWebAppSettings: () -> (MobileWebAppSettings) query;
+  getOrder: (orderId: OrderId) -> (opt Order) query;
+  getOrdersByCustomer: (customerId: text) -> (vec Order) query;
+  getProduct: (id: text) -> (opt AddonProduct) query;
+  getPublicCommunicationLogs: (orderId: OrderId) ->
+   (vec CommunicationLog) query;
+  getPublicReviews: () -> (vec record {
+                                 text;
+                                 Review;
+                               }) query;
+  getRazorpayCheckoutPayload: (orderId: text) ->
+   (variant {
+      err: text;
+      ok: text;
+    }) query;
+  getRazorpayKeyId: () -> (opt text) query;
+  getRazorpayPublicKeyId: () -> (variant {
+                                   err: text;
+                                   ok: text;
+                                 }) query;
+  getRecentNotifications: (limit: nat) -> (vec Notification) query;
+  getTeamMembers: () -> (vec TeamMember) query;
+  getUnreadMessagesCount: () -> (nat) query;
+  getUnreadOrdersCount: () -> (nat) query;
+  getWebsiteSettings: () -> (WebsiteSettings) query;
+  isCallerAdmin: () -> (bool) query;
+  isCallerFounder: () -> (bool) query;
+  isCallerSalesRep: () -> (bool) query;
+  linkAnonymousOrders: (email: text, phone: text, customerId: text) -> (nat);
+  listAllCommunicationLogs: () -> (vec CommunicationLog) query;
+  listAllOrders: () -> (vec Order) query;
+  listCommunicationLogs: (orderId: OrderId) -> (vec CommunicationLog) query;
+  listEmailTemplates: () -> (vec EmailTemplate) query;
+  listLeads: () -> (vec Lead) query;
+  listPendingReviews: () -> (vec record {
+                                   text;
+                                   Review;
+                                 }) query;
+  listProducts: () -> (vec AddonProduct) query;
+  listReviews: () -> (vec record {
+                            text;
+                            Review;
+                          }) query;
+  listSalesReps: () -> (SalesRepList) query;
+  logout: (token: text) -> (AuthResult);
+  markMessageAsRead: (logId: text, messageIndex: nat) -> ();
+  markOrderAsSeen: (orderId: text) -> ();
+  mergeCarts: (fromSessionId: text, toCustomerId: text) -> (CartResponse);
+  moveProductDown: (id: text) -> ();
+  moveProductUp: (id: text) -> ();
+  rejectReview: (id: text) -> (opt Review);
+  removeFromCart: (sessionId: text, customerId: opt text, productId: 
+   text) -> (CartResponse);
+  removeSalesRep: ("principal": text) -> (variant {
+                                            err: text;
+                                            ok;
+                                          });
+  reorderProducts: (orderedIds: vec text) -> ();
+  reorderTeamMembers: (ids: vec text) -> ();
+  requestOTP: (req: RequestOtpRequest) -> (RequestOtpResponse);
+  saveBrowseLead: (input: BrowseLeadInput) -> (variant {
+                                                 err: text;
+                                                 ok: nat;
+                                               });
+  saveCartLead: (input: CartLeadInput) -> (variant {
+                                             err: text;
+                                             ok: nat;
+                                           });
+  saveCheckoutLead: (input: CheckoutLeadInput) ->
+   (variant {
+      err: text;
+      ok: nat;
+    });
+  saveLead: (name: text, phone: text, email: text, subject: text, message:
+   text) -> (variant {
+               err: text;
+               ok: text;
+             });
+  saveRazorpayKeys: (keyId: text, keySecret: text) -> (bool);
+  seedDefaultProducts: () -> (nat);
+  sendCustomEmail: (orderId: OrderId, subject: text, body: text) ->
+   (SendTemplateEmailResponse);
+  sendPaymentReminder: (orderId: OrderId) -> (SendTemplateEmailResponse);
+  sendTemplateEmail: (req: SendTemplateEmailRequest) ->
+   (SendTemplateEmailResponse);
+  setHeroVideoSettings: (keepVolumeOn: bool, autoplay: bool, loopEnabled:
+   bool, muted: bool) -> (HeroVideoSettings);
+  submitReview: (name: text, "text": text, rating: nat, imageUrl:
+   opt text) -> (Review);
+  teamListCartLeads: () -> (vec CartLead) query;
+  teamListLeads: () -> (vec Lead) query;
+  teamListOrders: () -> (vec Order) query;
+  teamListProducts: () -> (vec AddonProduct) query;
+  teamUpdateCartLeadStatus: (id: nat, status: text) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  teamUpdateLeadStatus: (id: text, status: text) -> (variant {
+                                                       err: text;
+                                                       ok;
+                                                     });
+  toggleProductCOD: (id: text, codEnabled: bool) -> (text);
+  toggleTemplateActive: (id: EmailTemplateId, isActive: bool) -> ();
+  transform: (raw: TransformationInput) -> (TransformationOutput) query;
+  updateAdminEmailConfig: (req: UpdateAdminEmailConfigRequest) -> ();
+  updateCartLeadStatus: (id: nat, status: text) -> (variant {
+                                                      err: text;
+                                                      ok;
+                                                    });
+  updateCustomer: (token: text, req: UpdateCustomerRequest) -> (AuthResult);
+  updateEmailTemplate: (id: EmailTemplateId, template: EmailTemplate) -> ();
+  updateGalleryImage: (id: text, title: text, displayOrder: nat, isActive:
+   bool) -> (opt GalleryImage);
+  updateHeroVideo: (id: text, isActive: bool, isDefault: bool, displayOrder:
+   nat, platform: HeroPlatform) -> (opt HeroVideo);
+  updateLeadStatus: (id: text, status: text) -> (variant {
+                                                   err: text;
+                                                   ok;
+                                                 });
+  updateMobileWebAppSettings: (settings: MobileWebAppSettings) ->
+   (MobileWebAppSettings);
+  updateOrderStatus: (orderId: OrderId, status: OrderStatus) -> ();
+  updatePaymentStatus: (orderId: OrderId, paymentStatus: PaymentStatus) -> ();
+  updateProduct: (id: text, name: text, price: nat, category: text, imageUrl:
+   text, codEnabled: bool, description: opt text) -> (bool);
+  updateProductImage: (id: text, imageUrl: text) -> (bool);
+  updateQuantity: (sessionId: text, customerId: opt text, productId: 
+   text, quantity: nat) -> (CartResponse);
+  updateReview: (id: text, name: text, "text": text, rating: nat, imageUrl:
+   opt text, status: opt ReviewStatus) -> (opt Review);
+  updateTeamMember: (id: text, name: text, role: text, imageUrl: text,
+   displayOrder: nat, isActive: bool) -> (opt TeamMember);
+  updateWebsiteSettings: (settings: WebsiteSettings) -> (WebsiteSettings);
+  uploadFinalArtwork: (orderId: OrderId, artworkKey: ExternalBlob) -> ();
+  verifyOTP: (req: VerifyOtpRequest) -> (VerifyOtpResponse);
+}
